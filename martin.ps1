@@ -1,4 +1,6 @@
-gc "in.csv" |
+param([Parameter(Mandatory)][string]$filename)
+
+Get-Content $filename |
 % { ($_ -split ';') -ne "" } |
 % { $name,$version =  $_ -split '\s+'
     $versionWithoutPlusSuffix = ($version | Select-String -Pattern '[\d\.]+').Matches.Value -split '\.'
